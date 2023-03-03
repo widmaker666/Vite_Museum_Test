@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import SinglePaint from "../pages/SinglePaint";
 
-//! Besoin de l'id de la peinture grâce a un onClick (e) => setValue(e.target.value) ou quelque chose comme ça pour récuperer l'id et ensuite le mettre à l'intérieur de l'adresse d'api
 const Card = ({ paint }) => {
+  //-Permet de récupérer l'id de la div cliqué ! Manque plus qu'à s'en servir pour faire afficher la peinture
+
+  const handleClick = (e) => {
+    e.preventDefault();    
+    const idUrl = e.target.children[3].innerText;
+    console.log(idUrl);
+    const urlPaint = `https://api.artic.edu/api/v1/artworks/${idUrl}`
+    console.log(urlPaint);
+  };
+
   return (
-    <li className="card">
+    <li className="card" onClick={handleClick} target="_blank">
       <img
         src={`https://www.artic.edu/iiif/2/${paint.image_id}/full/843,/0/default.jpg`}
         alt={paint.title}
@@ -13,6 +23,7 @@ const Card = ({ paint }) => {
         <h2>{paint.title}</h2>
         <h4>{paint.artist_title}</h4>
         <p>{paint.place_of_origin}</p>
+        <span>{paint.id}</span>
       </div>
     </li>
   );
