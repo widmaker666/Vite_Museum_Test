@@ -1,5 +1,6 @@
 import React from "react";
 
+//! Besoin de l'id de la peinture grâce a un onClick (e) => setValue(e.target.value) ou quelque chose comme ça pour récuperer l'id et ensuite le mettre à l'intérieur de l'adresse d'api
 const Card = ({ paint }) => {
   return (
     <li className="card">
